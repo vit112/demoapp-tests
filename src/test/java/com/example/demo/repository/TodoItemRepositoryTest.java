@@ -9,8 +9,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.text.ParseException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static prototype.TodoItemPrototype.aTodoItem;
-import static prototype.TodoItemPrototype.aTodoItem2;
+import static com.example.demo.prototype.TodoItemPrototype.aTodoItem;
+import static com.example.demo.prototype.TodoItemPrototype.aTodoItem2;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest

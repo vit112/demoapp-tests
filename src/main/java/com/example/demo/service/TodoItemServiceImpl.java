@@ -4,6 +4,7 @@ import com.example.demo.entity.TodoItem;
 import com.example.demo.entity.User;
 import com.example.demo.repository.TodoItemRepository;
 import com.example.demo.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Sort;
@@ -14,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-
+@AllArgsConstructor
 @Service
 public class TodoItemServiceImpl implements TodoItemService {
 

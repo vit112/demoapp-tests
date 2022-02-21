@@ -1,4 +1,4 @@
-package prototype;
+package com.example.demo.prototype;
 
 import com.example.demo.entity.User;
 
