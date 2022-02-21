@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.TodoItemDto;
 import com.example.demo.entity.TodoItem;
 import com.example.demo.repository.TodoItemRepository;
 import com.example.demo.repository.UserRepository;
@@ -16,7 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.example.demo.prototype.TodoItemPrototype.aTodoItem;
-import static com.example.demo.prototype.TodoItemPrototype.atodoItemDto;
 import static com.example.demo.prototype.UserPrototype.aUser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -63,9 +61,9 @@ class TodoItemServiceTest {
     }
 
    // @Test
-    //void deleteTodoItem() throws ParseException {
-   // when(todoItemService.deleteTodoItem(aUser().getId(), aTodoItem().getId())).thenReturn(aTodoItem());
-   // verify(todoItemRepository,times(1)).findAll();
+   // void deleteTodoItem() throws ParseException {
+    //when(todoItemService.deleteTodoItem(aUser().getId(), aTodoItem().getId())).thenReturn(aTodoItem());
+    //verify(todoItemRepository,times(1)).findAll();
 
    // }
 
