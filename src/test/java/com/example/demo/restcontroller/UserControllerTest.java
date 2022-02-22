@@ -1,5 +1,6 @@
 package com.example.demo.restcontroller;
 
+import com.example.demo.entity.TodoItem;
 import com.example.demo.entity.User;
 import com.example.demo.prototype.UserPrototype;
 import com.example.demo.service.TodoItemService;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -24,10 +26,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.io.IOException;
 import java.text.ParseException;
 
-import static com.example.demo.prototype.UserPrototype.aUser;
-import static com.example.demo.prototype.UserPrototype.aUser2;
+import static com.example.demo.prototype.TodoItemPrototype.aTodoItem;
+import static com.example.demo.prototype.TodoItemPrototype.aTodoItem3;
+import static com.example.demo.prototype.UserPrototype.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
@@ -43,12 +48,12 @@ class UserControllerTest {
     private UserService userService;
     @Mock
     private TodoItemService todoItemService;
-    //@Autowired
-    @InjectMocks
+
+    @Mock
     private UserController userController;
 
-
     private JacksonTester<User> jsonUser;
+    private  JacksonTester<TodoItem> jsonTodoItem;
     @BeforeEach
     void setUp() {
         JacksonTester.initFields(this, new ObjectMapper());
@@ -74,34 +79,42 @@ class UserControllerTest {
     }
 
 
-    @Test
+    @Test //passed
     void addUser() throws Exception {
 
+        given(userController.addUser(aUser2())).willReturn(aUser2());
         //when
         MockHttpServletResponse response = mvc.perform(
                 post("/users").contentType(MediaType.APPLICATION_JSON).content(
                         jsonUser.write(aUser2()).getJson()))
                 .andReturn().getResponse();
         // then
-        //assertThat()
+        //System.out.println(response.getContentAsString());
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+
     }
-    @Disabled
+
+    //passed
     @Test
-    void addTodoItem() {
+    void addTodoItem() throws Exception {
+       // userController.addUser(aUser3());
+        doNothing().when(userController).addTodoItem(aUser().getId(), aTodoItem3());
+        userController.addTodoItem(aUser().getId(), aTodoItem3());
+        //given(userController.addTodoItem(1, aTodoItem())).willReturn(aTodoItem());
+        MockHttpServletResponse response = mvc.perform(
+                post("/users/1/todoItems").contentType(MediaType.APPLICATION_JSON).content(
+                        jsonTodoItem.write(aTodoItem3()).getJson()))
+                        .andReturn().getResponse();
+        //then
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+        verify(userController, times(1)).addTodoItem(aUser().getId(), aTodoItem3());
     }
-    @Disabled
-    @Test
-    void completeTask() {
-    }
+
     @Disabled
     @Test
     void deleteTodoItem() {
     }
-    @Disabled
-    @Test
-    void deleteUser() {
-    }
+
     @Disabled
     @Test
     void updateUser() {

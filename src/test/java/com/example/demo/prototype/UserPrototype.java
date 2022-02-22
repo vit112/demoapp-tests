@@ -28,5 +28,13 @@ public class UserPrototype {
         u.setPassword("pass1");
         return u;
     }
+
+    public static User aUser3() throws ParseException {
+        User u = new User();
+        u.setId(1);
+        u.setUsername("user1");
+        u.setPassword("pass1");
+        return u;
+    }
 }
 

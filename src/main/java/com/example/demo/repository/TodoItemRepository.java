@@ -9,4 +9,5 @@ import java.util.List;
 //@RepositoryRestResource(path="items")
 public interface TodoItemRepository extends JpaRepository<TodoItem, Integer>{
     List<TodoItem> findAllByOrderByDueDateAsc();
+
 }

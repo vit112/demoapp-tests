@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletResponse;
 
+import static com.example.demo.prototype.UserPrototype.aUser;
 import static com.example.demo.prototype.UserPrototype.aUser2;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -36,10 +37,17 @@ public class UserControllerSpringBootTest {
         //when
         ResponseEntity<User> userResponseEntity = restTemplate.postForEntity("/users",
                 aUser2(), User.class);
-
         // then
         assertThat(userResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+
     }
+
+    @Disabled
+    @Test
+    void deleteUser() {
+       // ResponseEntity<User> userResponseEntity = restTemplate.
+    }
+
 
     }
 

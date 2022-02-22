@@ -66,6 +66,7 @@ public class UserServiceImpl implements UserService {
         user.getTodoList().add(newItem);
         userRepository.save(user);
     }
+
 /*
     @Override
     public List<User> getAllUsers() {

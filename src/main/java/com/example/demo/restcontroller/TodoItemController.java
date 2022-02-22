@@ -35,6 +35,13 @@ public class TodoItemController {
     public List getUserTodoItems(@PathVariable @Valid @NotNull int userId){
         return todoItemService.getUserTodoItems(userId);
     }
+
+    //complete the tasks of specified todoItem
+    @PostMapping("/todoItem/{todoItemId}")
+    public void completeTask(@PathVariable int todoItemId){
+        todoItemService.completeTask(todoItemId);
+    }
+
 }
 
 

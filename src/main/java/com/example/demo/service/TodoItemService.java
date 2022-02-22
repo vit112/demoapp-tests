@@ -14,6 +14,7 @@ public interface TodoItemService {
     List<TodoItem> getTodoItemsSortedByDate();
     List<TodoItem> getUserTodoItems(int id);
 
+
     // TodoItem addTodoItem(TodoItem todoItem);
     // TodoItem getTodoItemById(int todoItemId);
     //void updateTodoItem(TodoItem todoItem);

@@ -30,6 +30,7 @@ public class DemoApplication  implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
+		//not fixed yet
 
 		//hardcoded user 1
 		User user = new User();

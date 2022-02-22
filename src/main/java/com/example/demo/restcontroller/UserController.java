@@ -32,16 +32,12 @@ public class UserController {
         return userService.addUser(user);
     }
 
+    //add todoItem based on specified user
     @PostMapping("/{userId}/todoItems")
     public void addTodoItem(@PathVariable int userId, @Valid @NotNull @RequestBody TodoItem todoItem) {
         userService.saveTodoItem(userId, todoItem);
     }
 
-    //complete the tasks of specified todoItem
-    @PostMapping("/todoItem/{todoItemId}")
-    public void completeTask(@PathVariable int todoItemId){
-        todoItemService.completeTask(todoItemId);
-    }
 
     //delete todoItem based on specified id
     @DeleteMapping("{userId}/todoItem/{todoItemId}")

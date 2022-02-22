@@ -77,6 +77,7 @@ public class TodoItemServiceImpl implements TodoItemService {
             throw new RuntimeException(ex.getMessage());
         }
     }
+
 /*
     @Override
     public TodoItem getTodoItemById(int todoItemId) {
