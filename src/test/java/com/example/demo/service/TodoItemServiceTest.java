@@ -59,7 +59,7 @@ class TodoItemServiceTest {
 
         List<TodoItem> expected = todoItemService.getTodoItems();
         assertEquals(expected, todoItems);
-        verify(todoItemRepository).findAll();
+        //verify(todoItemRepository).findAll();
     }
 
 

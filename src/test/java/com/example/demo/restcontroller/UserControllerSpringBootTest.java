@@ -45,7 +45,6 @@ public class UserControllerSpringBootTest {
     @Disabled
     @Test
     void deleteUser() {
-       // ResponseEntity<User> userResponseEntity = restTemplate.
     }
 
 

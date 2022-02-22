@@ -89,7 +89,6 @@ class UserControllerTest {
                         jsonUser.write(aUser2()).getJson()))
                 .andReturn().getResponse();
         // then
-        //System.out.println(response.getContentAsString());
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
 
     }
@@ -97,10 +96,9 @@ class UserControllerTest {
     //passed
     @Test
     void addTodoItem() throws Exception {
-       // userController.addUser(aUser3());
+
         doNothing().when(userController).addTodoItem(aUser().getId(), aTodoItem3());
         userController.addTodoItem(aUser().getId(), aTodoItem3());
-        //given(userController.addTodoItem(1, aTodoItem())).willReturn(aTodoItem());
         MockHttpServletResponse response = mvc.perform(
                 post("/users/1/todoItems").contentType(MediaType.APPLICATION_JSON).content(
                         jsonTodoItem.write(aTodoItem3()).getJson()))
