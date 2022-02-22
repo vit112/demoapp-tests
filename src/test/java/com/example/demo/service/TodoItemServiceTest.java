@@ -62,52 +62,38 @@ class TodoItemServiceTest {
         verify(todoItemRepository).findAll();
     }
 
-   // @Test //dont know how to test
-   // void deleteTodoItem() throws ParseException {
-    //when(todoItemService.deleteTodoItem(aUser().getId(), aTodoItem().getId())).thenReturn(aTodoItem());
-    //verify(todoItemRepository,times(1)).findAll();
-
-   // }
-
-
-
-    @Disabled
-    @Test //does not work
-    void completeTask() throws ParseException {
-
-        //given(todoItemService.completeTask(aTodoItem().getId())).willAnswer(aTodoItem().setDone(true));
-        //todoItemService.completeTask(aTodoItem().getId());
-
-       // when(todoItemRepository.getById(any())).thenReturn(aTodoItem2());
-
-       // when(todoItemRepository.getById(any())).thenReturn(aTodoItem().setDone(true));
-
-        //given(todoItemService.completeTask(aTodoItem().getId())).willAnswer(aTodoItem().isDone(),true);
-        assertEquals(aTodoItem(), aTodoItem2());
-     //   assertEquals(todoItemRepository.getById(aTodoItem().getId()).setDone(true), aTodoItem2());
-    }
-
-
 
     @Test //passed
     void getUserTodoItems() throws ParseException {
 
         List<TodoItem> todoItems = Arrays.asList(aTodoItem(), aTodoItem2());
-        //when(userRepository.getById(any())).thenReturn(aUser3());
-        //List<TodoItem> createdTestList;
         when(userRepository.save(any())).thenReturn(aUser());
-       // createdTestList = todoItemService.getUserTodoItems(any());
-
         User createdUser = aUser();
         assertEquals(todoItems, aUser().getTodoList());
-
-        // when(userRepository.getById(any()).getTodoList()).thenReturn(todoItems);
-        //assertThat(!todoItemService.getTodoItems().isEmpty());
-
-
     }
 
+    @Disabled
+    @Test //does not work yet
+    void deleteTodoItem() throws ParseException {
+        //when(todoItemService.deleteTodoItem(aUser().getId(), aTodoItem().getId())).thenReturn(aTodoItem());
+        //verify(todoItemRepository,times(1)).findAll();
+    }
 
+    @Disabled
+    @Test //does not work yet
+    void completeTask() throws ParseException {
+
+        //given(todoItemService.completeTask(aTodoItem().getId())).willAnswer(aTodoItem().setDone(true));
+        //todoItemService.completeTask(aTodoItem().getId());
+
+        // when(todoItemRepository.getById(any())).thenReturn(aTodoItem2());
+
+        // when(todoItemRepository.getById(any())).thenReturn(aTodoItem().setDone(true));
+
+        //given(todoItemService.completeTask(aTodoItem().getId())).willAnswer(aTodoItem().isDone(),true);
+        assertEquals(aTodoItem(), aTodoItem2());
+        //   assertEquals(todoItemRepository.getById(aTodoItem().getId()).setDone(true), aTodoItem2());
+    }
 
 
 

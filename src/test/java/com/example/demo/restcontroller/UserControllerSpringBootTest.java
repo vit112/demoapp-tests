@@ -31,7 +31,7 @@ public class UserControllerSpringBootTest {
     private TestRestTemplate restTemplate;
 
     @Disabled
-    @Test
+    @Test //passed
     void addUser() throws Exception {
 
         //when
