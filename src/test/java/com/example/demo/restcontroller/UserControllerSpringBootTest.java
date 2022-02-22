@@ -30,7 +30,6 @@ public class UserControllerSpringBootTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @Disabled
     @Test //passed
     void addUser() throws Exception {
 
