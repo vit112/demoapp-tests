@@ -12,7 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//Command Line Runner is an interface that used to execute the code after the Spring Boot application started
 @SpringBootApplication
 public class DemoApplication  implements CommandLineRunner {
 
