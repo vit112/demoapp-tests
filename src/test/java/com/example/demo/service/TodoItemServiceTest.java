@@ -61,7 +61,7 @@ class TodoItemServiceTest {
         assertThrows(RuntimeException.class, () -> todoItemService.addTodoItem(aTodoItem()));
     }
 
-    @Test //passed
+    @Test
     void getTodoItems() throws ParseException {
         List<TodoItem> todoItems = Arrays.asList(aTodoItem());
         given(todoItemService.getTodoItems()).willReturn(todoItems);
