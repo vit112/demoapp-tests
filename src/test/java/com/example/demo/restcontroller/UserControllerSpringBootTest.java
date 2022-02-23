@@ -1,6 +1,7 @@
 package com.example.demo.restcontroller;
 
 
+import com.example.demo.entity.TodoItem;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 import org.junit.jupiter.api.Disabled;
@@ -13,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletResponse;
+
+import java.text.ParseException;
 
 import static com.example.demo.prototype.UserPrototype.aUser;
 import static com.example.demo.prototype.UserPrototype.aUser2;
@@ -30,20 +33,13 @@ public class UserControllerSpringBootTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @Test //passed
+    @Test
     void addUser() throws Exception {
 
-        //when
         ResponseEntity<User> userResponseEntity = restTemplate.postForEntity("/users",
                 aUser2(), User.class);
-        // then
         assertThat(userResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-    }
-
-    @Disabled
-    @Test
-    void deleteUser() {
     }
 
 

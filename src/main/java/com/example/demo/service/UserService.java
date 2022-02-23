@@ -11,7 +11,4 @@ public interface UserService {
     void saveTodoItem(int userId, TodoItem todoItem);
     void updateUser(int userId, User user);
 
-
-    //List<User> getAllUsers();
-    //User addUser(User user);
 }

@@ -27,8 +27,8 @@ import java.util.Date;
             t.setId(1);
             t.setTitle("todoItem_test");
             t.setBody("body");
-            Date date = DateFor.parse("20/02/2022");
-            t.setDueDate(date);
+            //Date date = DateFor.parse("20/02/2022");
+           // t.setDueDate(date);
             t.setDone(true);
             return t;
         }

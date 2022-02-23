@@ -30,9 +30,6 @@ public class TodoItem {
     @JsonFormat(pattern="dd/MM/yyyy")
     @Column(name="due_date")
     private Date dueDate;
-   // @ManyToOne(fetch = FetchType.EAGER)
-    //@JoinColumn( name = "user_id")    //*foreign key did not work, it was null*
-    //private User user;
 
     public TodoItem(String title, boolean done, String body, Date dueDate){
         this.title = title;

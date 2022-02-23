@@ -21,21 +21,19 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.io.IOException;
 import java.text.ParseException;
 
-import static com.example.demo.prototype.TodoItemPrototype.aTodoItem;
-import static com.example.demo.prototype.TodoItemPrototype.aTodoItem3;
+import static com.example.demo.prototype.TodoItemPrototype.*;
 import static com.example.demo.prototype.UserPrototype.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -65,13 +63,13 @@ class UserControllerTest {
 
     @Test //passed
     public void getUserById() throws Exception {
-        //given
+
       given(userController.getUserById(1)).willReturn(aUser());
-      //when
+
         MockHttpServletResponse response = mvc.perform(get("/users/1")
                         .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
-        //then
+
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(
                 jsonUser.write(aUser()).getJson());
@@ -83,39 +81,59 @@ class UserControllerTest {
     void addUser() throws Exception {
 
         given(userController.addUser(aUser2())).willReturn(aUser2());
-        //when
+
         MockHttpServletResponse response = mvc.perform(
                 post("/users").contentType(MediaType.APPLICATION_JSON).content(
                         jsonUser.write(aUser2()).getJson()))
                 .andReturn().getResponse();
-        // then
+
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+        verify(userController, times(1)).addUser(aUser2());
 
     }
+
+
 
     //passed
     @Test
     void addTodoItem() throws Exception {
 
-        doNothing().when(userController).addTodoItem(aUser().getId(), aTodoItem3());
-        userController.addTodoItem(aUser().getId(), aTodoItem3());
+        doNothing().when(userController).addTodoItem(anyInt(), any(TodoItem.class));
+       //userController.addTodoItem(aUser().getId(), aTodoItem3());
         MockHttpServletResponse response = mvc.perform(
-                post("/users/1/todoItems").contentType(MediaType.APPLICATION_JSON).content(
-                        jsonTodoItem.write(aTodoItem3()).getJson()))
+                post("/users/2/todoItems").contentType(MediaType.APPLICATION_JSON).content(
+                        jsonTodoItem.write(aTodoItem2()).getJson()))
                         .andReturn().getResponse();
         //then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-        verify(userController, times(1)).addTodoItem(aUser().getId(), aTodoItem3());
+        verify(userController, times(1)).addTodoItem(2, aTodoItem2());
+    }
+
+
+
+    @Disabled
+    @Test
+    void deleteUser() throws Exception {
+        doNothing().when(userController).deleteUser(aUser3().getId());
+        MockHttpServletResponse response = mvc.perform(
+                delete("/users/1")).andReturn().getResponse();
+
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+        verify(userController, times(1)).deleteUser(aUser3().getId());
+
     }
 
     @Disabled
     @Test
-    void deleteTodoItem() {
+    void deleteTodoItem() throws Exception {
+        doNothing().when(userController).deleteTodoItem(1, 1);
+
+        MockHttpServletResponse response = mvc.perform(
+                delete("/users/1/todoItem/1")).andReturn().getResponse();
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+        verify(userController, times(1)).deleteTodoItem(1,1);
+
     }
 
-    @Disabled
-    @Test
-    void updateUser() {
-    }
 
 }

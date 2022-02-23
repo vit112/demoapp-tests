@@ -34,7 +34,11 @@ public class TodoItemServiceImpl implements TodoItemService {
             newTodoItem.setBody(todoItem.getBody());
         }
         newTodoItem.setDueDate(todoItem.getDueDate());
-        todoItemRepository.save(newTodoItem);
+        try {
+            todoItemRepository.save(newTodoItem);
+        } catch (DataAccessException e){
+           throw new RuntimeException(e.getMessage());
+        }
         return newTodoItem;
     }
 
@@ -78,33 +82,6 @@ public class TodoItemServiceImpl implements TodoItemService {
         }
     }
 
-/*
-    @Override
-    public TodoItem getTodoItemById(int todoItemId) {
-        return todoItemRepository.findById(todoItemId).get();
-    }
-
-    @Override
-    public void updateTodoItem(TodoItem todoItem) {
-        TodoItem theTodoItem = todoItemRepository.findById(todoItem.getId()).orElseThrow();
-        todoItemRepository.save(theTodoItem);
-    }
-
-    @Override
-    public void deleteTodoItem(int todoItemId) {
-        try{
-            todoItemRepository.deleteById(todoItemId);
-        } catch(DataAccessException ex){
-            throw new RuntimeException(ex.getMessage());
-        }
-    }
-
-       @Override
-    public TodoItem addTodoItem(TodoItem todoItem) {
-        return null;
-    }
-
- */
 }
 
 
